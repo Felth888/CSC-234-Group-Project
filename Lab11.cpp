@@ -1,13 +1,13 @@
 ///////////////////////////////////////////////////////////////////////
 //                                                                     
-// Filename: Lab10.cpp
-// Date: 2021-11-11
-// Programmer: Eric Bulson            
+// Filename: Lab11.cpp
+// Date: 2021-11-19
+// Programmers: Eric Bulson, Cesar Carrillo, Devon D'Ambrosio,
+//				Nicolas Fuller, Kristen Nelms             
 //
 // Description:
-//    Allows a user to create up to 100 Person objects and store them
-//    in an array. It then sorts the objects by age and outputs all
-//    objects.
+//    Allows a user to create a number of Person objects and store them
+//    in a doubly linked list and then prints out all of the objects.
 //   
 ///////////////////////////////////////////////////////////////////////
 

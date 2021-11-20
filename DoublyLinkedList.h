@@ -6,7 +6,19 @@
 
 using namespace std;
 
-
+///////////////////////////////////////////////////////////////////////
+//
+// Struct: nodeType                                          
+//                                                                   
+// Description:
+//    represents a single node including it's info, pointer to the next
+//    node, and pointer to the previous node        
+//
+//    info
+//    next
+//    back                                   
+// 
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 struct nodeType
 {
@@ -15,6 +27,37 @@ struct nodeType
     nodeType<Type>* back;
 };
 
+///////////////////////////////////////////////////////////////////////
+//
+// Class: doublyLinkedList                                          
+//                                                                   
+// Description:
+//    represents a single doublyLinkedList including the number of nodes
+//    in the list, a pointer to the first node, and a pointer to the 
+//    last node.        
+//
+//    first
+//    last
+//    count
+// 
+//    doublyLinkedList
+//    doublyLinkedList (copy constructor)
+//    ~doublyLInkedList
+//    initializeList
+//    isEmptyList
+//    destroy
+//    print
+//    reversePrint
+//    length
+//    front
+//    back
+//    search
+//    insert
+//    deleteNode
+//    copyList
+//    operator=                                    
+// 
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 class doublyLinkedList
 {
@@ -46,7 +89,22 @@ public:
         (const doublyLinkedList<Type>&);
 };
 
-
+///////////////////////////////////////////////////////////////////////
+//
+// Function: doublyLinkedList                                        
+//                                                                   
+// Description:
+//    creates a doublyLinkedList object and initializes all variables
+//
+// Parameters:  
+//    first : pointer to the first node in the list
+//    last : pointer to the last node in the list
+//    count : number of nodes in the list             
+//                                                       
+// Returns:  
+//    none               
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 doublyLinkedList<Type>::doublyLinkedList()
 {
@@ -55,12 +113,66 @@ doublyLinkedList<Type>::doublyLinkedList()
     count = 0;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: ~doublyLinkedList                                        
+//                                                                   
+// Description:
+//    destorys a doubleLinkedList object and deallocates the memory for
+//    all of its nodes
+//
+// Parameters:  
+//    first : pointer to the first node in the list
+//    last : pointer to the last node in the list
+//    count : number of nodes in the list             
+//                                                       
+// Returns:  
+//    none               
+//                                            
+///////////////////////////////////////////////////////////////////////
+template <class Type>
+doublyLinkedList<Type>::~doublyLinkedList()
+{
+    destroy();
+}
+
+
+///////////////////////////////////////////////////////////////////////
+//
+// Function: isEmptyList                                        
+//                                                                   
+// Description:
+//    checks if a doublyLinkedList object is empty and returns result
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    true : returns if the pointer to the first node is NULL
+//    false : returns if the pointer to the first node is not NULL              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 bool doublyLinkedList<Type>::isEmptyList() const
 {
     return (first == nullptr);
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: destroy                                        
+//                                                                   
+// Description:
+//    destorys a doubleLinkedList object and deallocates the memory for
+//    all of its nodes
+//
+// Parameters:  
+//    none            
+//                                                       
+// Returns:  
+//    none              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::destroy()
 {
@@ -77,18 +189,62 @@ void doublyLinkedList<Type>::destroy()
     count = 0;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: initializeList                                        
+//                                                                   
+// Description:
+//    reinitializes a doublyLinkedList object to an empty state
+//
+// Parameters:  
+//    none            
+//                                                       
+// Returns:  
+//    none              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::initializeList()
 {
     destroy();
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: length                                        
+//                                                                   
+// Description:
+//    returns the number of nodes currently in a doublyLinkedList 
+//    object
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    count : the number of nodes currently in the list           
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 int doublyLinkedList<Type>::length() const
 {
     return count;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: print                                        
+//                                                                   
+// Description:
+//    prints the info contained in each node of a doublyLinkedList 
+//    object, from first to last.
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    none        
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::print() const
 {
@@ -103,7 +259,21 @@ void doublyLinkedList<Type>::print() const
     }
 }
 
-
+///////////////////////////////////////////////////////////////////////
+//
+// Function: reversePrint                                        
+//                                                                   
+// Description:
+//    prints the info contained in each node of a doublyLinkedList 
+//    object, from last to first.
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    none        
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::reversePrint() const
 {
@@ -118,6 +288,21 @@ void doublyLinkedList<Type>::reversePrint() const
     }
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: search                                        
+//                                                                   
+// Description:
+//    searches for a node in a doubleLinkedList object that contains 
+//    info matching a search item, and returns the result
+//
+// Parameters:  
+//    searchItem : the value to be searched for in the info of the nodes            
+//                                                       
+// Returns:  
+//    found : returns true if item was found and false if not found.              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 bool doublyLinkedList<Type>::
 search(const Type& searchItem) const
@@ -139,6 +324,22 @@ search(const Type& searchItem) const
     return found;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: front                                        
+//                                                                   
+// Description:
+//    returns the info contained in the first node of a doublyLinkedList
+//    object
+//    if the list is empty the program terminates
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    first->info : the info contained in the first node of the list         
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 Type doublyLinkedList<Type>::front() const
 {
@@ -147,6 +348,22 @@ Type doublyLinkedList<Type>::front() const
     return first->info;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: back                                        
+//                                                                   
+// Description:
+//    returns the info contained in the last node of a doublyLinkedList
+//    object
+//    if the list is empty the program terminates
+//
+// Parameters:  
+//    none             
+//                                                       
+// Returns:  
+//    last->info : the info contained in the last node of the list         
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 Type doublyLinkedList<Type>::back() const
 {
@@ -155,6 +372,21 @@ Type doublyLinkedList<Type>::back() const
     return last->info;
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: insert                                        
+//                                                                   
+// Description:
+//    inserts an item into a new node at the appropriate location in
+//    a doubleLinkedList object
+//
+// Parameters:  
+//    insertItem : the value of the info to be stored in the new node            
+//                                                       
+// Returns:  
+//    none              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::insert(const Type& insertItem)
 {
@@ -216,6 +448,22 @@ void doublyLinkedList<Type>::insert(const Type& insertItem)
     }
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: deleteNode                                        
+//                                                                   
+// Description:
+//    searches for a node in a doubleLinkedList object that contains 
+//    info matching a search item, and if found deletes the node from
+//    the list
+//
+// Parameters:  
+//    deleteItem : the value of the info in the node to be deleted            
+//                                                       
+// Returns:  
+//    none              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template <class Type>
 void doublyLinkedList<Type>::deleteNode(const Type& deleteItem)
 {
@@ -273,29 +521,70 @@ void doublyLinkedList<Type>::deleteNode(const Type& deleteItem)
     }
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: copyList                                        
+//                                                                   
+// Description:
+//    copies all the nodes of a doublyLinkedList object into another 
+//    doublyLinkedList object
+//
+// Parameters:  
+//    otherList : the doublyLinkedList object to be copied          
+//                                                       
+// Returns:  
+//    none              
+//                                            
+///////////////////////////////////////////////////////////////////////
 template<class Type>
 void doublyLinkedList<Type>::copyList(const doublyLinkedList<Type>& otherList)
 {
     //ENTER CODE HERE (20%)
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: doublyLinkedList                                        
+//                                                                   
+// Description:
+//    copy constructor for the doublyLinkedList class that copies all 
+//    of the nodes from an existing doublyLinkedList object to a new 
+//    one
+//
+// Parameters:  
+//    otherList : the doublyLinkedList object to be copied            
+//                                                       
+// Returns:  
+//                  
+//                                            
+///////////////////////////////////////////////////////////////////////
 template<class Type>
 doublyLinkedList<Type>::doublyLinkedList(const doublyLinkedList<Type>& otherList)
 {
     //ENTER CODE HERE (20%)
 }
 
+///////////////////////////////////////////////////////////////////////
+//
+// Function: operator=                                      
+//                                                                   
+// Description:
+//    Overloads the assignment operator for the doublyLinkedList class. 
+//    Copies all of the nodes from an existing doublyLinkedList object 
+//    to a new one
+//
+// Parameters:            
+//    otherList : doublyLinkedList object being copied              
+//                                                       
+// Returns:  
+//                 
+//                                            
+///////////////////////////////////////////////////////////////////////
 template<class Type>
 const doublyLinkedList<Type>& doublyLinkedList<Type>::operator=
 (const doublyLinkedList<Type>& otherList)
 {
     //ENTER CODE HERE (20%)
-}
-
-template <class Type>
-doublyLinkedList<Type>::~doublyLinkedList()
-{
-    //ENTER CODE HERE
 }
 
 #endif
