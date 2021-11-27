@@ -17,66 +17,34 @@
 #include <iostream>
 #include <iomanip>
 
-void bubbleSort(Person[], int size);
-
 int main()
 {
-	int size = 0, age = 0;
-	std::string name = "";
-	Person people[100];
 
-	for (size; size < 100; size++)
+	doublyLinkedList<Person> People;
+	string name;
+	int age = 0;
+
+	while (name != "-1")
 	{
-		std::cout << "Enter name (-1 to stop): ";
-		std::cin >> name;
-
+		cout << "Enter name (-1 to stop): ";
+		cin >> name;
 		if (name == "-1")
+		{
+			cout << endl;
 			break;
-
-		std::cout << "Enter age of " << name << ": ";
-		std::cin >> age;
-
-		people[size] = Person(name, age);
+		}
+		else
+		{
+			cout << "Enter age of " << name << ": ";
+			cin >> age;
+			Person someone(name, age);
+			People.insert(someone);
+		}
 	}
 
-	bubbleSort(people, size);
-
-	std::cout << std::endl;
-	for (int i = 0; i < size; i++)
-		std::cout << people[i];
+	cout << "People:" << endl;
+	People.print();
 
 	system("pause");
 	return 0;
-}
-
-///////////////////////////////////////////////////////////////////////
-//
-// Function: bubbleSort                                      
-//                                                                   
-// Description:
-//    uses the bubble sort method to sort an array of Person objects
-//    by age.
-//
-// Parameters:            
-//    item : Item object being compared               
-//                                                       
-// Returns:  
-//    bool : returns true if the item's name is greater than the name of
-//			 the compared item, else returns false               
-//                                            
-///////////////////////////////////////////////////////////////////////
-void bubbleSort(Person people[], int size)
-{
-	for (int i = 1; i < size; i++)
-	{
-		for (int index = 0; index < (size - i); index++)
-		{
-			if (people[index] > people[index + 1])
-			{
-				Person temp = people[index];
-				people[index] = people[index + 1];
-				people[index + 1] = temp;
-			}
-		}
-	}
 }

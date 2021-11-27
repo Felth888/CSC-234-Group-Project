@@ -176,7 +176,7 @@ bool doublyLinkedList<Type>::isEmptyList() const
 template <class Type>
 void doublyLinkedList<Type>::destroy()
 {
-    nodeType<Type>* temp; 
+    nodeType<Type>* temp;
 
     while (first != nullptr)
     {
@@ -248,13 +248,13 @@ int doublyLinkedList<Type>::length() const
 template <class Type>
 void doublyLinkedList<Type>::print() const
 {
-    nodeType<Type>* current; 
+    nodeType<Type>* current;
 
-    current = first;  
+    current = first;
 
     while (current != nullptr)
     {
-        cout << current->info << "  ";  
+        cout << current->info;
         current = current->next;
     }
 }
@@ -277,9 +277,9 @@ void doublyLinkedList<Type>::print() const
 template <class Type>
 void doublyLinkedList<Type>::reversePrint() const
 {
-    nodeType<Type>* current; 
+    nodeType<Type>* current;
 
-    current = last;  
+    current = last;
 
     while (current != nullptr)
     {
@@ -308,7 +308,7 @@ bool doublyLinkedList<Type>::
 search(const Type& searchItem) const
 {
     bool found = false;
-    nodeType<Type>* current; 
+    nodeType<Type>* current;
 
     current = first;
 
@@ -319,7 +319,7 @@ search(const Type& searchItem) const
             current = current->next;
 
     if (found)
-        found = (current->info == searchItem); 
+        found = (current->info == searchItem);
 
     return found;
 }
@@ -390,17 +390,17 @@ Type doublyLinkedList<Type>::back() const
 template <class Type>
 void doublyLinkedList<Type>::insert(const Type& insertItem)
 {
-    nodeType<Type>* current;      
-    nodeType<Type>* trailCurrent; 
-    nodeType<Type>* newNode;      
+    nodeType<Type>* current;
+    nodeType<Type>* trailCurrent = NULL;
+    nodeType<Type>* newNode;
     bool found;
 
-    newNode = new nodeType<Type>; 
-    newNode->info = insertItem;  
+    newNode = new nodeType<Type>;
+    newNode->info = insertItem;
     newNode->next = nullptr;
     newNode->back = nullptr;
 
-    if (first == nullptr) 
+    if (first == nullptr)
     {
         first = newNode;
         last = newNode;
@@ -411,7 +411,7 @@ void doublyLinkedList<Type>::insert(const Type& insertItem)
         found = false;
         current = first;
 
-        while (current != nullptr && !found) 
+        while (current != nullptr && !found)
             if (current->info >= insertItem)
                 found = true;
             else
@@ -420,7 +420,7 @@ void doublyLinkedList<Type>::insert(const Type& insertItem)
                 current = current->next;
             }
 
-        if (current == first) 
+        if (current == first)
         {
             first->back = newNode;
             newNode->next = first;
@@ -539,7 +539,46 @@ void doublyLinkedList<Type>::deleteNode(const Type& deleteItem)
 template<class Type>
 void doublyLinkedList<Type>::copyList(const doublyLinkedList<Type>& otherList)
 {
-    //ENTER CODE HERE (20%)
+    nodeType<Type>* newNode;
+    nodeType<Type>* current;
+
+    //If list has contents, destroy it
+    if (first != nullptr)
+    {
+        initializeList();
+    }
+    // if the other list is empty, then this list is empty
+    if (otherList.first == nullptr)
+    {
+        first = nullptr;
+        last = nullptr;
+        count = 0;
+    }
+    //
+    else
+    {
+        current = otherList.first;      //point to first of otherList
+        first = new nodeType<Type>;     //
+        first->info = current->info;
+        first->next = nullptr;
+        first->back = nullptr;
+        last = first;
+
+        current = current->next;
+
+        while (current != nullptr)
+        {
+            newNode = new nodeType<Type>;
+            newNode->info = current->info;
+            newNode->next = nullptr;
+            newNode->back = current->back;
+            last->next = newNode;
+            last = newNode;
+
+            current = current->next;
+        }
+        count = otherList.count;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -561,7 +600,13 @@ void doublyLinkedList<Type>::copyList(const doublyLinkedList<Type>& otherList)
 template<class Type>
 doublyLinkedList<Type>::doublyLinkedList(const doublyLinkedList<Type>& otherList)
 {
-    //ENTER CODE HERE (20%)
+    //initialize the variables, then copy otherList using copyList private function
+    first = nullptr;
+    last = nullptr;
+    count = 0;
+
+    //using overloaded operator =
+    this = otherList;
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -584,7 +629,8 @@ template<class Type>
 const doublyLinkedList<Type>& doublyLinkedList<Type>::operator=
 (const doublyLinkedList<Type>& otherList)
 {
-    //ENTER CODE HERE (20%)
+    copyList(otherList);
+    return *this;
 }
 
 #endif
