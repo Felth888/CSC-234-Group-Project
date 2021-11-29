@@ -594,7 +594,7 @@ void doublyLinkedList<Type>::copyList(const doublyLinkedList<Type>& otherList)
 //    otherList : the doublyLinkedList object to be copied            
 //                                                       
 // Returns:  
-//                  
+//    none      
 //                                            
 ///////////////////////////////////////////////////////////////////////
 template<class Type>
@@ -622,7 +622,7 @@ doublyLinkedList<Type>::doublyLinkedList(const doublyLinkedList<Type>& otherList
 //    otherList : doublyLinkedList object being copied              
 //                                                       
 // Returns:  
-//                 
+//    *this : the new doublyLinkedList object              
 //                                            
 ///////////////////////////////////////////////////////////////////////
 template<class Type>
