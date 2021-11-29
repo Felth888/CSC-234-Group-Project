@@ -605,8 +605,7 @@ doublyLinkedList<Type>::doublyLinkedList(const doublyLinkedList<Type>& otherList
     last = nullptr;
     count = 0;
 
-    //using overloaded operator =
-    this = otherList;
+    copyList(otherList);
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -629,7 +628,10 @@ template<class Type>
 const doublyLinkedList<Type>& doublyLinkedList<Type>::operator=
 (const doublyLinkedList<Type>& otherList)
 {
-    copyList(otherList);
+    if (this != &otherList)
+    {
+        copyList(otherList);
+    }
     return *this;
 }
 
